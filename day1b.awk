@@ -23,5 +23,6 @@ FNR == NL {
   nextfile
 }
 END {
+  print ARGC
   print frequency
 }
