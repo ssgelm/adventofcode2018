@@ -1,7 +1,6 @@
 #!/usr/local/bin/gawk -f
 
 BEGIN {
-  frequency=0
   freqs[0]=0
 }
 NR == 1 {
@@ -12,8 +11,7 @@ NR == 1 {
   frequency+=$1
   if(frequency in freqs) {
     exit
-  }
-  else {
+  } else {
     freqs[frequency]=1
   }
 }
