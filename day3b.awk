@@ -6,6 +6,14 @@ function fillarea(x, y, w, h) {
     }
   }
 }
+function checkarea(x, y, w, h) {
+  for (i = x; i < x+w; i++) {
+    for (j = y; j < y+h; j++) {
+      if (fabric[i][j] > 1) return 0
+    }
+  }
+  return 1
+}
 {
   sub(/:/, "", $3)
   split($3, loc, ",")
@@ -25,18 +33,9 @@ END {
     y = aclaim[2]
     w = aclaim[3]
     h = aclaim[4]
-    broken = 0
-    for (i = x; i < x+w; i++) {
-      for (j = y; j < y+h; j++) {
-        if (fabric[i][j] > 1) {
-          broken = 1
-          break
-        }
-      }
-      if (broken > 0) break
+    if (checkarea(x, y, w, h)) {
+      print claim
+      exit
     }
-    if (broken > 0) continue
-    print claim
-    exit
   }
 }
